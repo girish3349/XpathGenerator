@@ -1,0 +1,78 @@
+{
+  "name": "xpath-generator",
+  "version": "1.0.0",
+  "description": "A modern, web-based application that extracts XPaths of all interactive elements from any given URL. Perfect for web automation, testing, and scraping projects.",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p 3000 -c-1",
+    "dev": "npx http-server -p 3000 -c-1 -o",
+    "build": "npm run minify && npm run optimize",
+    "minify": "npm run minify:css && npm run minify:js",
+    "minify:css": "npx cleancss -o dist/styles.min.css styles.css",
+    "minify:js": "npx terser script.js -o dist/script.min.js -c -m",
+    "optimize": "npm run copy:html && npm run copy:assets",
+    "copy:html": "cp index.html dist/",
+    "copy:assets": "mkdir -p dist && cp -r assets dist/ 2>/dev/null || true",
+    "test": "npm run test:lighthouse",
+    "test:lighthouse": "npx lighthouse http://localhost:3000 --output=html --output-path=./lighthouse-report.html --chrome-flags='--headless'",
+    "test:accessibility": "npx pa11y http://localhost:3000",
+    "lint": "npx eslint script.js --fix",
+    "lint:css": "npx stylelint styles.css --fix",
+    "format": "npx prettier --write .",
+    "preview": "npm run build && npx http-server dist -p 8080 -o",
+    "deploy:github": "npm run build && npx gh-pages -d dist",
+    "deploy:vercel": "npx vercel --prod",
+    "deploy:netlify": "npm run build && npx netlify deploy --prod --dir=dist",
+    "clean": "rm -rf dist/ node_modules/ .lighthouseci/",
+    "postinstall": "npm run build"
+  },
+  "keywords": [
+    "xpath",
+    "web-scraping",
+    "automation",
+    "testing",
+    "selenium",
+    "webdriver",
+    "dom",
+    "elements",
+    "extraction",
+    "frontend",
+    "javascript",
+    "html",
+    "css"
+  ],
+  "author": "XPath Generator Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/xpath-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/xpath-generator/issues"
+  },
+  "homepage": "https://your-username.github.io/xpath-generator",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.2",
+    "eslint": "^8.57.0",
+    "gh-pages": "^6.1.0",
+    "http-server": "^14.1.1",
+    "lighthouse": "^11.7.0",
+    "netlify-cli": "^17.20.0",
+    "pa11y": "^7.0.0",
+    "prettier": "^3.2.5",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard": "^36.0.1",
+    "terser": "^5.26.0",
+    "vercel": "^33.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}
