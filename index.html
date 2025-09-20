@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XPath Generator - Extract Interactive Elements</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-code"></i> XPath Generator</h1>
+            <p>Extract XPaths of all interactive elements from any webpage</p>
+        </header>
+
+        <main class="main-content">
+            <div class="input-section">
+                <div class="url-input-container">
+                    <input type="url" id="urlInput" placeholder="Enter website URL (e.g., https://example.com)" required>
+                    <button id="extractBtn" class="extract-btn">
+                        <i class="fas fa-search"></i> Extract XPaths
+                    </button>
+                </div>
+                <div class="options-container">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="includeNonInteractive" checked>
+                        <span class="checkmark"></span>
+                        Include non-interactive elements
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="includeText" checked>
+                        <span class="checkmark"></span>
+                        Include text elements
+                    </label>
+                </div>
+            </div>
+
+            <div class="loading-section" id="loadingSection" style="display: none;">
+                <div class="loading-spinner"></div>
+                <p>Analyzing webpage and extracting XPaths...</p>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-header">
+                    <h2><i class="fas fa-list"></i> Extracted XPaths</h2>
+                    <div class="results-controls">
+                        <button id="togglePreviewBtn" class="btn-secondary">
+                            <i class="fas fa-eye"></i> Show Preview
+                        </button>
+                        <button id="copyAllBtn" class="btn-secondary">
+                            <i class="fas fa-copy"></i> Copy All
+                        </button>
+                        <button id="downloadBtn" class="btn-secondary">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button id="clearBtn" class="btn-secondary">
+                            <i class="fas fa-trash"></i> Clear
+                        </button>
+                    </div>
+                </div>
+
+                <div class="preview-section" id="previewSection" style="display: none;">
+                    <div class="preview-header">
+                        <h3><i class="fas fa-globe"></i> Webpage Preview</h3>
+                        <div class="preview-controls">
+                            <button id="refreshPreviewBtn" class="btn-secondary">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                            <button id="openInNewTabBtn" class="btn-secondary">
+                                <i class="fas fa-external-link-alt"></i> Open in New Tab
+                            </button>
+                        </div>
+                    </div>
+                    <div class="preview-container">
+                        <iframe id="previewFrame" src="" frameborder="0"></iframe>
+                        <div class="preview-error" id="previewError" style="display: none;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>Preview not available due to CORS restrictions. Click "Open in New Tab" to view the webpage.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalElements">0</span>
+                        <span class="stat-label">Total Elements</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="interactiveElements">0</span>
+                        <span class="stat-label">Interactive</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="formElements">0</span>
+                        <span class="stat-label">Form Elements</span>
+                    </div>
+                </div>
+
+                <div class="results-container">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">All</button>
+                        <button class="filter-tab" data-filter="interactive">Interactive</button>
+                        <button class="filter-tab" data-filter="forms">Forms</button>
+                        <button class="filter-tab" data-filter="links">Links</button>
+                        <button class="filter-tab" data-filter="buttons">Buttons</button>
+                    </div>
+                    
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Search XPaths or element types...">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+
+                    <div class="xpath-list" id="xpathList">
+                        <!-- XPath items will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="error-section" id="errorSection" style="display: none;">
+                <div class="error-content">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Error</h3>
+                    <p id="errorMessage"></p>
+                    <button id="retryBtn" class="btn-primary">Try Again</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 XPath Generator. Built for web automation and testing.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
