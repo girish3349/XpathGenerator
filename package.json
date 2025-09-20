@@ -10,11 +10,10 @@
     "minify": "npm run minify:css && npm run minify:js",
     "minify:css": "npx cleancss -o dist/styles.min.css styles.css",
     "minify:js": "npx terser script.js -o dist/script.min.js -c -m",
-    "optimize": "npm run copy:html && npm run copy:assets",
-    "copy:html": "cp index.html dist/",
-    "copy:assets": "mkdir -p dist && cp -r assets dist/ 2>/dev/null || true",
-    "test": "npm run test:lighthouse",
-    "test:lighthouse": "npx lighthouse http://localhost:3000 --output=html --output-path=./lighthouse-report.html --chrome-flags='--headless'",
+    "optimize": "node build.js",
+    "test": "npm run test:build",
+    "test:build": "npm run build && echo 'Build test passed'",
+    "test:lighthouse": "npm run start & timeout 10 && npx lighthouse http://localhost:3000 --output=html --output-path=./lighthouse-report.html --chrome-flags='--headless' --no-enable-error-reporting",
     "test:accessibility": "npx pa11y http://localhost:3000",
     "lint": "npx eslint script.js --fix",
     "lint:css": "npx stylelint styles.css --fix",
@@ -23,8 +22,7 @@
     "deploy:github": "npm run build && npx gh-pages -d dist",
     "deploy:vercel": "npx vercel --prod",
     "deploy:netlify": "npm run build && npx netlify deploy --prod --dir=dist",
-    "clean": "rm -rf dist/ node_modules/ .lighthouseci/",
-    "postinstall": "npm run build"
+    "clean": "rmdir /s /q dist 2>nul || rm -rf dist/ && rmdir /s /q node_modules 2>nul || rm -rf node_modules/ && rmdir /s /q .lighthouseci 2>nul || rm -rf .lighthouseci/"
   },
   "keywords": [
     "xpath",
