@@ -8,6 +8,7 @@ This guide covers various deployment options for the XPath Generator application
 - **Best for**: Static hosting, open source projects
 - **Cost**: Free
 - **Setup**: Automatic via GitHub Actions
+- **URL**: https://girish3349.github.io/XpathGenerator
 
 ```bash
 # Enable GitHub Pages in repository settings
@@ -60,11 +61,11 @@ docker-compose up -d
 ### Docker Hub
 ```bash
 # Build and push
-docker build -t yourusername/xpath-generator .
-docker push yourusername/xpath-generator
+docker build -t girish3349/xpath-generator .
+docker push girish3349/xpath-generator
 
 # Deploy anywhere
-docker run -p 3000:3000 yourusername/xpath-generator
+docker run -p 3000:3000 girish3349/xpath-generator
 ```
 
 ## ☁️ Cloud Platform Deployment

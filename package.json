@@ -22,7 +22,8 @@
     "deploy:github": "npm run build && npx gh-pages -d dist",
     "deploy:vercel": "npx vercel --prod",
     "deploy:netlify": "npm run build && npx netlify deploy --prod --dir=dist",
-    "clean": "rmdir /s /q dist 2>nul || rm -rf dist/ && rmdir /s /q node_modules 2>nul || rm -rf node_modules/ && rmdir /s /q .lighthouseci 2>nul || rm -rf .lighthouseci/"
+    "clean": "rmdir /s /q dist 2>nul || rm -rf dist/ && rmdir /s /q node_modules 2>nul || rm -rf node_modules/ && rmdir /s /q .lighthouseci 2>nul || rm -rf .lighthouseci/",
+    "setup:github-pages": "node setup-github-pages.js"
   },
   "keywords": [
     "xpath",
@@ -43,12 +44,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/xpath-generator.git"
+    "url": "https://github.com/girish3349/XpathGenerator.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/xpath-generator/issues"
+    "url": "https://github.com/girish3349/XpathGenerator/issues"
   },
-  "homepage": "https://your-username.github.io/xpath-generator",
+  "homepage": "https://girish3349.github.io/XpathGenerator",
   "devDependencies": {
     "clean-css-cli": "^5.6.2",
     "eslint": "^8.57.0",
