@@ -86,7 +86,14 @@ console.log('4. 🌐 Access:');
 console.log('   - Your site will be available at:');
 console.log('   - https://girish3349.github.io/XpathGenerator\n');
 
-console.log('📚 For detailed instructions, see GITHUB-PAGES-SETUP.md');
+console.log('⚠️  Common Issues:');
+console.log('   - If Vercel/Netlify fail: Add required secrets in Settings → Secrets');
+console.log('   - If GitHub Pages fails: Ensure Pages is enabled in repository settings');
+console.log('   - If build fails: Check Actions logs for detailed error messages\n');
+
+console.log('📚 For detailed instructions:');
+console.log('   - GitHub Pages: GITHUB-PAGES-SETUP.md');
+console.log('   - Troubleshooting: TROUBLESHOOTING.md');
 
 // Check if this is a GitHub repository
 const { execSync } = require('child_process');
