@@ -8,10 +8,16 @@ if (!fs.existsSync(distDir)) {
     fs.mkdirSync(distDir, { recursive: true });
 }
 
-// Copy index.html to dist
+// Copy and fix index.html to dist
 try {
-    fs.copyFileSync('index.html', path.join(distDir, 'index.html'));
-    console.log('✓ Copied index.html to dist/');
+    let indexContent = fs.readFileSync('index.html', 'utf8');
+    
+    // Fix CSS and JS references to use minified versions
+    indexContent = indexContent.replace('href="styles.css"', 'href="styles.min.css"');
+    indexContent = indexContent.replace('src="script.js"', 'src="script.min.js"');
+    
+    fs.writeFileSync(path.join(distDir, 'index.html'), indexContent);
+    console.log('✓ Copied and fixed index.html to dist/');
 } catch (error) {
     console.error('Error copying index.html:', error.message);
 }
